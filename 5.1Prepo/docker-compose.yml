@@ -1,0 +1,15 @@
+services:
+  app:
+    image: helloworld_image
+    build: 
+      context: ./5.1P
+      dockerfile: Dockerfile
+    container_name: helloworld_container
+    restart: on-failure
+    ports:
+      - "4026:3000"
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:3000/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
